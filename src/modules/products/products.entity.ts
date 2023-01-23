@@ -26,6 +26,14 @@ export class Products {
   name: string;
 
   @ApiProperty()
+  @Column({ default: 0 })
+  purchasePrice: number;
+
+  @ApiProperty()
+  @Column({ default: 0 })
+  sellPrice: number;
+
+  @ApiProperty()
   @Column({ nullable: true })
   image: string;
 

@@ -4,9 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MulterModule } from '@nestjs/platform-express';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { ProductsModule } from './products/products.module';
-import { ImageModule } from './image/image.module';
-import { uploadStorage } from './utils/upload-storage.utils';
+import { ProductsModule } from './modules/products/products.module';
+import { ImageModule } from './modules/image/image.module';
+import { PurchasesModule } from './modules/purchases/purchases.module';
 
 @Module({
   imports: [
@@ -23,13 +23,12 @@ import { uploadStorage } from './utils/upload-storage.utils';
       entities: ['dist/**/*.entity.js'],
       synchronize: true,
     }),
-    MulterModule.register({
-      storage: uploadStorage,
-    }),
+    MulterModule.register({}),
     ImageModule,
     UserModule,
     AuthModule,
     ProductsModule,
+    PurchasesModule,
   ],
 })
 export class AppModule {}
