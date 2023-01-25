@@ -33,7 +33,7 @@ const crudOptions: CrudOptions = {
         FileInterceptor('image', {
           storage: diskStorage({
             destination: './files',
-            filename: (req: Request, file: any, cb: any) => {
+            filename: (req, file, cb) => {
               const randomName = Array(32)
                 .fill(null)
                 .map(() => Math.round(Math.random() * 16).toString(16))
