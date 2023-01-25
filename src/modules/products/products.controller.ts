@@ -44,6 +44,22 @@ const crudOptions: CrudOptions = {
         }),
       ],
     },
+    updateOneBase: {
+      interceptors: [
+        FileInterceptor('image', {
+          storage: diskStorage({
+            destination: './files',
+            filename: (req, file, cb) => {
+              const randomName = Array(32)
+                .fill(null)
+                .map(() => Math.round(Math.random() * 16).toString(16))
+                .join('');
+              return cb(null, `${randomName}-${file.originalname}`);
+            },
+          }),
+        }),
+      ],
+    },
   },
 };
 
@@ -66,5 +82,15 @@ export class ProductsController implements CrudController<Products> {
   ) {
     dto.image = `${process.env.HOSTNAME}/files/${file?.filename}`;
     return this.base.createOneBase(req, dto);
+  }
+
+  @Override()
+  updateOne(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: Products,
+    @UploadedFile() file,
+  ) {
+    dto.image = `${process.env.HOSTNAME}/files/${file?.filename}`;
+    return this.base.updateOneBase(req, dto);
   }
 }

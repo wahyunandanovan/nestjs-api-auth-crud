@@ -9,6 +9,8 @@ import { ImageModule } from './modules/image/image.module';
 import { PurchasesModule } from './modules/purchases/purchases.module';
 import { AppController } from './app.controller';
 import { SalesModule } from './modules/sales/sales.module';
+import { CategoryModule } from './modules/category/category.module';
+import { SuppliersModule } from './modules/supplier/supplier.module';
 
 @Module({
   imports: [
@@ -32,6 +34,8 @@ import { SalesModule } from './modules/sales/sales.module';
     ProductsModule,
     PurchasesModule,
     SalesModule,
+    CategoryModule,
+    SuppliersModule,
   ],
   controllers: [AppController],
 })

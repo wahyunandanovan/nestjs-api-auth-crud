@@ -26,6 +26,18 @@ export class Products {
   name: string;
 
   @ApiProperty()
+  @Column({ nullable: true })
+  description: string;
+
+  @ApiProperty()
+  @Column({ nullable: true })
+  image: string;
+
+  @ApiProperty()
+  @Column()
+  unit: string;
+
+  @ApiProperty()
   @Column({ default: 0 })
   purchasePrice: number;
 
@@ -34,10 +46,14 @@ export class Products {
   sellPrice: number;
 
   @ApiProperty()
-  @Column({ nullable: true })
-  image: string;
+  @Column({ default: 0 })
+  stock: number;
 
   @ApiProperty()
-  @Column({ nullable: true })
-  description: string;
+  @Column()
+  categoryId: number;
+
+  @ApiProperty()
+  @Column()
+  supplierId: number;
 }

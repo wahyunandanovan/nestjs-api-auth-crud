@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Sales {
+export class Category {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;
@@ -27,29 +27,5 @@ export class Sales {
 
   @ApiProperty()
   @Column({ nullable: true })
-  notes: string;
-
-  @ApiProperty()
-  @Column({ nullable: true })
-  status: string;
-
-  @ApiProperty()
-  @Column({ default: 0 })
-  total: number;
-
-  @ApiProperty()
-  @Column({ nullable: true })
-  customer: string;
-
-  @ApiProperty()
-  @Column({ nullable: true })
-  customerPhone: number;
-
-  @ApiProperty()
-  @Column({ nullable: true })
-  customerEmail: string;
-
-  @ApiProperty()
-  @Column('simple-array')
-  items: string[];
+  description: string;
 }
