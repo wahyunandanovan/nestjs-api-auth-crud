@@ -25,6 +25,12 @@ const crudOptions: CrudOptions = {
       roles: {
         eager: true,
       },
+      category: {
+        eager: true,
+      },
+      supplier: {
+        eager: true,
+      },
     },
   },
   routes: {

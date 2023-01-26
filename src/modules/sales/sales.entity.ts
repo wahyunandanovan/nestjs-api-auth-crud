@@ -5,7 +5,12 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
 } from 'typeorm';
+import { Products } from '../products/products.entity';
 
 @Entity()
 export class Sales {
@@ -49,7 +54,7 @@ export class Sales {
   @Column({ nullable: true })
   customerEmail: string;
 
-  @ApiProperty()
-  @Column('simple-array')
-  items: string[];
+  // @ApiProperty()
+  // @ManyToOne((type) => Products)
+  // public items: Products;
 }

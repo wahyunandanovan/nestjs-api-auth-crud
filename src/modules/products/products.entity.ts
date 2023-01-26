@@ -5,7 +5,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import { Category } from '../category/category.entity';
+import { Suppliers } from '../supplier/supplier.entity';
 
 @Entity()
 export class Products {
@@ -39,11 +43,11 @@ export class Products {
 
   @ApiProperty()
   @Column({ default: 0 })
-  purchasePrice: number;
+  purchase_price: number;
 
   @ApiProperty()
   @Column({ default: 0 })
-  sellPrice: number;
+  sell_price: number;
 
   @ApiProperty()
   @Column({ default: 0 })
@@ -51,9 +55,17 @@ export class Products {
 
   @ApiProperty()
   @Column()
-  categoryId: number;
+  category_id: number;
+
+  @ManyToOne(() => Category, (category) => category.id)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
 
   @ApiProperty()
   @Column()
-  supplierId: number;
+  supplier_id: number;
+
+  @ManyToOne(() => Suppliers, (supplier) => supplier.id)
+  @JoinColumn({ name: 'supplier_id' })
+  supplier: Suppliers;
 }
