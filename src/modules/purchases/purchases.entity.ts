@@ -5,7 +5,25 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import { Products } from '../products/products.entity';
+import { Suppliers } from '../supplier/supplier.entity';
+
+class Items {
+  @ApiProperty()
+  product_id: number;
+
+  @ApiProperty()
+  product: Products;
+
+  @ApiProperty()
+  quantity: number;
+
+  @ApiProperty()
+  total: number;
+}
 
 @Entity()
 export class Purchases {
@@ -26,26 +44,25 @@ export class Purchases {
   name: string;
 
   @ApiProperty()
-  @Column({ default: 0 })
+  @Column()
   total: number;
 
   @ApiProperty()
   @Column()
-  supplier: string;
+  supplier_id: number;
 
-  @ApiProperty()
-  @Column({ nullable: true })
-  supplierPhone: number;
-
-  @ApiProperty()
-  @Column({ nullable: true })
-  supplierEmail: string;
-
-  @ApiProperty()
-  @Column('simple-array')
-  items: string[];
+  @ManyToOne(() => Suppliers, (supplier) => supplier.id)
+  @JoinColumn({ name: 'supplier_id' })
+  suppliers: Suppliers;
 
   @ApiProperty()
   @Column({ nullable: true })
   notes: string;
+
+  @ApiProperty({
+    isArray: true,
+    type: Items,
+  })
+  @Column('longtext')
+  items: string;
 }

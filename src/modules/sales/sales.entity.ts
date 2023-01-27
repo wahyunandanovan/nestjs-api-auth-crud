@@ -5,12 +5,25 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
-  JoinColumn,
   ManyToOne,
-  OneToMany,
+  JoinColumn,
 } from 'typeorm';
+import { Customers } from '../customers/customers.entity';
 import { Products } from '../products/products.entity';
+
+class Items {
+  @ApiProperty()
+  product_id: number;
+
+  @ApiProperty()
+  product: Products;
+
+  @ApiProperty()
+  quantity: number;
+
+  @ApiProperty()
+  total: number;
+}
 
 @Entity()
 export class Sales {
@@ -31,30 +44,25 @@ export class Sales {
   name: string;
 
   @ApiProperty()
-  @Column({ nullable: true })
-  notes: string;
-
-  @ApiProperty()
-  @Column({ nullable: true })
-  status: string;
-
-  @ApiProperty()
   @Column({ default: 0 })
   total: number;
 
-  @ApiProperty()
-  @Column({ nullable: true })
-  customer: string;
+  @ApiProperty({ default: 1 })
+  @Column({ default: 1 })
+  customer_id: number;
+
+  @ManyToOne(() => Customers, (customer) => customer.id)
+  @JoinColumn({ name: 'customer_id' })
+  customers: Customers;
 
   @ApiProperty()
   @Column({ nullable: true })
-  customerPhone: number;
+  notes: string;
 
-  @ApiProperty()
-  @Column({ nullable: true })
-  customerEmail: string;
-
-  // @ApiProperty()
-  // @ManyToOne((type) => Products)
-  // public items: Products;
+  @ApiProperty({
+    isArray: true,
+    type: Items,
+  })
+  @Column('longtext')
+  items: string;
 }

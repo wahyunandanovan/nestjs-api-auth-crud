@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Suppliers {
+export class Customers {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;

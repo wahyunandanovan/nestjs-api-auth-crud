@@ -11,6 +11,7 @@ import { AppController } from './app.controller';
 import { SalesModule } from './modules/sales/sales.module';
 import { CategoryModule } from './modules/category/category.module';
 import { SuppliersModule } from './modules/supplier/supplier.module';
+import { CustomersModule } from './modules/customers/customers.module';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { SuppliersModule } from './modules/supplier/supplier.module';
       synchronize: true,
     }),
     MulterModule.register({}),
-    ImageModule,
+    // ImageModule,
     UserModule,
     AuthModule,
     ProductsModule,
@@ -36,6 +37,7 @@ import { SuppliersModule } from './modules/supplier/supplier.module';
     SalesModule,
     CategoryModule,
     SuppliersModule,
+    CustomersModule,
   ],
   controllers: [AppController],
 })
