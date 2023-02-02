@@ -2,6 +2,7 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Delete,
   Get,
   Param,
   Put,
@@ -43,5 +44,11 @@ export class UserController {
       data: body,
     };
     return res;
+  }
+
+  @ApiBearerAuth('access-token')
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    return this.userService.deleteUser(id);
   }
 }

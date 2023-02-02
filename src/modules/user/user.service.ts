@@ -50,6 +50,16 @@ export class UserService {
       .execute();
   }
 
+  // delete user
+  async deleteUser(id: number): Promise<any> {
+    return this.userRepository
+      .createQueryBuilder()
+      .delete()
+      .from(User)
+      .where('id = :id', { id })
+      .execute();
+  }
+
   /* get all users */
   async getAllUsers(): Promise<User[]> {
     try {
