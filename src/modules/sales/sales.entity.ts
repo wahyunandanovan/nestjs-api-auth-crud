@@ -39,6 +39,10 @@ export class Sales {
   @UpdateDateColumn()
   public updated_at: Date;
 
+  @ApiProperty({ default: 'requesting' })
+  @Column({ default: 'requesting' })
+  status: string;
+
   @ApiProperty()
   @Column({ nullable: true })
   name: string;
